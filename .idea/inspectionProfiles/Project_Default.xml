@@ -1,0 +1,17 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="game_objects.raycast" />
+          <option value="time.dt" />
+          <option value="game_objects.boxcast" />
+          <option value="base_classes.Item.generate_product_for" />
+          <option value="dict.__getitem__" />
+          <option value="cv2.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
