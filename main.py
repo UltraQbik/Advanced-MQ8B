@@ -10,16 +10,18 @@ def terminal_runtime():
         return
 
     user_input = [x for x in user_input.split(" ") if x]
+    opened_file = ""
 
     match user_input[0].lower():
-        case "?":
+        case "?" | "help":
             print(
                 generate_table_str(
                     [
-                        ["help", "shows you this list"],
+                        ["? / help", "shows you this list"],
                         ["open", "opens a code file"],
                         ["exec", "executes the opened file; exec -f [file] to pass in file directly"],
-                        ["list", "lists all the instructions"]
+                        ["list", "lists all the instructions"],
+                        ["exit", "exits"]
                     ],
                     row_align=["c", "l"],
                     column_sep="-"
@@ -27,6 +29,8 @@ def terminal_runtime():
             )
         case "open":
             if len(user_input) > 1 and os.path.isfile(user_input[1]):
+                opened_file = user_input[1]
+                print("\n".join(str(x) for x in compiler(opened_file)["instruction_list"]))
                 print("Success!")
             else:
                 print("Fail!")
@@ -34,13 +38,17 @@ def terminal_runtime():
             for idx, tag in enumerate(user_input):
                 if tag[0] != "-":
                     continue
+
                 if tag == "-f" and idx + 1 < len(user_input):
                     if os.path.isfile(user_input[idx + 1]):
+                        opened_file = user_input[1]
                         print("Success!")
                     else:
                         print("Fail!")
         case "list":
             pass
+        case "exit":
+            exit(0)
         case default:
             print(f"unknown command name '{user_input[0]}'; use '?' to get the list of all commands")
 

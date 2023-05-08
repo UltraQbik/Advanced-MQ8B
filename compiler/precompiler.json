@@ -1,0 +1,6 @@
+{
+  "include"   : [1],
+  "define"    : [2],
+  "vardef"    : [2],
+  "subrut"    : [1]
+}
