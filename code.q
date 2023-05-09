@@ -1,11 +1,31 @@
-#include lib.q
+; Simple addition program
 
-#vardef a      $0
-#vardef b      $1
-#vardef result $2
+.vardef a       auto
+.vardef b       auto
+.vardef result  auto
+.vardef cmd     auto
 
-#subrut MAIN
-    SRA #12 &a
-    SRA #12 &b
+SRA #10 $1
 
+UI &cmd
+UI &a
+UI &b
+
+JMPZ @ADD
+dec
+JMPZ @SUB
+JMPZ @ERROR
+
+.subrut ADD
     ADC &a &b &result
+    JMP @END
+
+.subrut SUB
+    SBC &a &b &result
+    JMP @END
+
+.subrut ERROR
+    JMP @END
+
+.subrut END
+    HALT

@@ -6,6 +6,13 @@ def generate_table_list(rows: list[list[str]], row_names: list[str] | None = Non
             row_sizes = [max(x, len(y)) for x, y in zip(row_sizes, row)]
         row_sizes = [x + 2 for x in row_sizes]
 
+    for idx, size in enumerate(row_sizes):
+        if size < 0:
+            max_ = len(rows[0])
+            for row in rows:
+                max_ = max(max_, len(row[idx]))
+            row_sizes[idx] = max_ + 2
+
     if row_align is None:
         row_align = ["^" for _ in rows[0]]
     else:
